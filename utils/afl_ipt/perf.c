@@ -354,7 +354,9 @@ page_cache_t *page_cache_init() {
   page_cache_t *ret = malloc(sizeof(page_cache_t));
   ret->page_buffer = malloc(0x1000);
 
-  asprintf(&mapsFilename, "/proc/%d/mem", getpid());
+// BUG FIXME TODO
+fprintf(stderr, "BUG - this cannot work, we do not have the child_pid yet, and the pid will gone once decoding is starting\n");
+  asprintf(&mapsFilename, "/proc/%d/mem", pid);
   int fd = open(mapsFilename, O_RDONLY);
   if (fd == -1) {
 
